@@ -35,16 +35,23 @@ const App = () => {
     );
     const data = await response.json();
     setInputText('');
-    setResponseLog([{key: responseLog.length + 1, prompt: inputText, response: data.choices[0].text}, ...responseLog])
+    setResponseLog([
+      {
+        key: responseLog.length + 1,
+        prompt: inputText,
+        response: data.choices[0].text,
+      },
+      ...responseLog,
+    ]);
   }
 
   return (
     <div className='app-container'>
-      <h1>✨ Fun with AI ✨</h1>
+      <h1>✨ Writer-Bot 3000 ✨</h1>
       <form onSubmit={onSubmit} className='section-container'>
         <label>
-          <h2>Enter prompt</h2>
-          <Ideas updateInputText={updateInputText}/>
+          <h2>👋 Hi friend! What should I write?</h2>
+          <Ideas updateInputText={updateInputText} />
           <textarea
             type='text'
             value={inputText}
@@ -54,19 +61,28 @@ const App = () => {
         <input type='submit' value='Submit' className='button' />
       </form>
       <section className='section-container'>
-        {responseLog.length > 0 ?
-        responseLog.map((element) => {
-          return (
-            <div key={element.key} className='entry-container'>
-              <h2>Prompt:</h2>
-              <div>{element.prompt}</div>
-              <h2>Response:</h2>
-              <div>{element.response}</div>
-            </div>
-          )
-        })
-        : null} 
+        {responseLog.length > 0
+          ? responseLog.map((element) => {
+              return (
+                <div key={element.key} className='entry-container'>
+                  <h2 className='entry-header'>Prompt</h2>
+                  <div>{element.prompt}</div>
+                  <h2 className='entry-header'>Response</h2>
+                  <div>{element.response}</div>
+                </div>
+              );
+            })
+          : null}
       </section>
+      <footer>
+        <div>
+          Made with love by{' '}
+          <a href='https://www.linkedin.com/in/diana-viglucci/'>
+            Diana Viglucci
+          </a>{' '}
+          🖤
+        </div>
+      </footer>
     </div>
   );
 };
