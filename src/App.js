@@ -3,7 +3,8 @@ import { useState } from 'react';
 
 const App = () => {
   const [inputText, setInputText] = useState('');
-  const [outputText, setOutputText] = useState('');
+  // const [outputText, setOutputText] = useState('');
+  const [responseLog, setResponseLog] = useState([]);
 
   const requestData = {
     prompt: inputText,
@@ -15,14 +16,11 @@ const App = () => {
   };
 
   const updateInputText = (event) => {
-    console.log('updating input to >>>', event.target.value)
-    setInputText(event.target.value)
-  }
+    setInputText(event.target.value);
+  };
 
   async function onSubmit(event) {
     event.preventDefault();
-    console.log('about to fetch...')
-    console.log('fucking key >>', process.env.REACT_APP_OPENAI_API_KEY)
     const response = await fetch(
       'https://api.openai.com/v1/engines/text-curie-001/completions',
       {
@@ -35,24 +33,40 @@ const App = () => {
       }
     );
     const data = await response.json();
-    console.log('data >>>', data)
-    console.log('data.result ...', data.choices[0].text)
-    setOutputText(data.choices[0].text);
+    console.log('raw data ...', data.choices[0].text);
+    // setOutputText(data.choices[0].text);
     setInputText('');
+    setResponseLog([{key: responseLog.length + 1, prompt: inputText, response: data.choices[0].text}, ...responseLog])
+    console.log('response log >>', responseLog)
   }
 
   return (
-    <div>
+    <div className='app-container'>
       <header>Fun with AI</header>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className='section-container'>
         <label>
-          Enter prompt
-          <input type='text' value={inputText} onChange={updateInputText}></input>
+          <section>Enter prompt</section>
+          <input
+            type='text'
+            value={inputText}
+            onChange={updateInputText}
+          ></input>
         </label>
-        <input type='submit' value='Submit' />
+        <input type='submit' value='Submit' className='button' />
       </form>
       <section>
-        Result: {outputText}
+        {responseLog.length > 0 ?
+        responseLog.map((element) => {
+          return (
+            <div key={element.key}>
+              <h3>Prompt:</h3>
+              <div>{element.prompt}</div>
+              <h3>Response:</h3>
+              <div>{element.response}</div>
+            </div>
+          )
+        })
+        : null} 
       </section>
     </div>
   );
