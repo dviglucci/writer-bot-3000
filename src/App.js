@@ -42,26 +42,26 @@ const App = () => {
 
   return (
     <div className='app-container'>
-      <header>Fun with AI</header>
+      <h1>✨Fun with AI✨</h1>
       <form onSubmit={onSubmit} className='section-container'>
         <label>
-          <section>Enter prompt</section>
-          <input
+          <h2>Enter prompt</h2>
+          <textarea
             type='text'
             value={inputText}
             onChange={updateInputText}
-          ></input>
+          ></textarea>
         </label>
         <input type='submit' value='Submit' className='button' />
       </form>
-      <section>
+      <section className='section-container'>
         {responseLog.length > 0 ?
         responseLog.map((element) => {
           return (
-            <div key={element.key}>
-              <h3>Prompt:</h3>
+            <div key={element.key} className='entry-container'>
+              <h2>Prompt:</h2>
               <div>{element.prompt}</div>
-              <h3>Response:</h3>
+              <h2>Response:</h2>
               <div>{element.response}</div>
             </div>
           )
