@@ -3,7 +3,8 @@ import { useState } from 'react';
 export const ideasArr = [
   'write a poem about a dog on a skateboard',
   'write lyrics to my new hit single "therapist in the club"',
-  'write text for a birthday card',
+  'write a recipe for homemade pop rocks',
+  'write text for a birthday card'
 ];
 
 export default function Ideas(props) {
@@ -13,7 +14,7 @@ export default function Ideas(props) {
     event.preventDefault();
     props.updateInputText(event);
 
-    if (currentPromptIdx === 2) {
+    if (currentPromptIdx === 3) {
       setCurrentPromptIdx(0);
     } else {
       setCurrentPromptIdx(currentPromptIdx + 1);
