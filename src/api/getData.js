@@ -8,7 +8,7 @@ export default async function makeAPICall(inputText) {
     presence_penalty: 0.0,
   };
 
-  await fetch(
+  const response = await fetch(
     'https://api.openai.com/v1/engines/text-curie-001/completions',
     {
       method: 'POST',
@@ -19,4 +19,7 @@ export default async function makeAPICall(inputText) {
       body: JSON.stringify(requestData),
     }
   );
+  const data = await response.json();
+
+  return data;
 }
