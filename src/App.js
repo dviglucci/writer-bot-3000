@@ -23,6 +23,11 @@ const App = () => {
   async function onSubmit(event) {
     event.preventDefault();
     const data = await makeAPICall(inputText);
+    /**
+     * I split the data here so that poems and other text that
+     * has newlines will actually be printed on a new line when
+     * I map over the data later.
+     */
     let split = data.choices[0].text.split('\n');
     setInputText('');
     setResponseLog([

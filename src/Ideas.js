@@ -3,7 +3,7 @@ import { useState } from 'react';
 export const ideasArr = [
   'write a poem about a dog on a skateboard',
   'write lyrics to my new hit single "therapist in the club"',
-  'write a recipe for homemade pop rocks',
+  'write the first paragraph of an essay about lip gloss',
   'write text for a birthday card'
 ];
 
