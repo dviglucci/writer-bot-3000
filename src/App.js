@@ -1,10 +1,10 @@
 import './App.css';
 import { useState } from 'react';
 import Ideas from './Ideas';
+import Footer from './Footer';
 
 const App = () => {
   const [inputText, setInputText] = useState('');
-  // const [outputText, setOutputText] = useState('');
   const [responseLog, setResponseLog] = useState([]);
 
   const requestData = {
@@ -74,15 +74,7 @@ const App = () => {
             })
           : null}
       </section>
-      <footer>
-        <div>
-          Made with love by{' '}
-          <a href='https://www.linkedin.com/in/diana-viglucci/'>
-            Diana Viglucci
-          </a>{' '}
-          🖤
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

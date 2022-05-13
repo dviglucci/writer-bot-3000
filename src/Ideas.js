@@ -22,7 +22,12 @@ export default function Ideas(props) {
 
   return (
     <div>
-      <button onClick={setSamplePrompt} value={ideasArr[currentPromptIdx]} className='button' id='button-reversed'>
+      <button
+        onClick={setSamplePrompt}
+        value={ideasArr[currentPromptIdx]}
+        className='button'
+        id='button-reversed'
+      >
         Help me think of something
       </button>
     </div>
