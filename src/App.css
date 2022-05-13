@@ -20,8 +20,20 @@ section {
   display: block;
 }
 
+#dropdown-basic {
+  display: flex;
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid black;
+}
+
+.prompt-ideas {
+  color: black;
+  text-decoration: none;
+}
+
 textarea {
-  width: 88%;
+  width: 93%;
   height: 60px;
   border: 2px solid black;
   text-align: center;

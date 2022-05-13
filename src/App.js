@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import Ideas from './Ideas';
 
 const App = () => {
   const [inputText, setInputText] = useState('');
@@ -33,19 +34,17 @@ const App = () => {
       }
     );
     const data = await response.json();
-    console.log('raw data ...', data.choices[0].text);
-    // setOutputText(data.choices[0].text);
     setInputText('');
     setResponseLog([{key: responseLog.length + 1, prompt: inputText, response: data.choices[0].text}, ...responseLog])
-    console.log('response log >>', responseLog)
   }
 
   return (
     <div className='app-container'>
-      <h1>✨Fun with AI✨</h1>
+      <h1>✨ Fun with AI ✨</h1>
       <form onSubmit={onSubmit} className='section-container'>
         <label>
           <h2>Enter prompt</h2>
+          <Ideas updateInputText={updateInputText}/>
           <textarea
             type='text'
             value={inputText}
